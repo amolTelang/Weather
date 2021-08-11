@@ -17,8 +17,9 @@ const App=()=>{
         className="search"
         placeholder="Search..."
         value={query}
-        onChange={(e)=>setQuery(e.target.value)}/>
-        onKeyPress={search}
+        onChange={(e)=>setQuery(e.target.value)}
+        onKeyPress={search}/>
+        
         </div>
 
     )

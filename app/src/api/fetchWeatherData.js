@@ -1,16 +1,25 @@
 import axios from 'axios';
 
 
-const URL='https://community-open-weather-map.p.rapidapi.com/climate/month'
-const API_KEY=process.env.RAPID_API_WEATHER_KEY;
+const URL='https://community-open-weather-map.p.rapidapi.com/find'
+
 
 export const fetchWeatherData=async(query)=>{
+  try {
     const {data} =await axios.get(URL,{
         params:{
             q:query,
+            type: 'link, accurate',
             units:'metric',
-            APPID:API_KEY,
-        }
+            
+        },
+        headers: {
+            'x-rapidapi-key': process.env.REACT_APP_RAPID_API_WEATHER_API_KEY,
+            'x-rapidapi-host': 'community-open-weather-map.p.rapidapi.com'
+          }
     });
     return data;
+  } catch (error) {
+      console.log(error);
+  }
 }
