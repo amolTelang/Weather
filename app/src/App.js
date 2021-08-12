@@ -7,7 +7,11 @@ const App=()=>{
     const[weather,setWeather]=useState({});
     const search= async(e)=>{
         if(e.key==='Enter'){
-            const data=await fetchWeatherData(query)
+            const data=await fetchWeatherData(query);
+            console.log(data);
+            setWeather(data);
+            setQuery('');
+           
             
         }
     }
@@ -20,7 +24,17 @@ const App=()=>{
         value={query}
         onChange={(e)=>setQuery(e.target.value)}
         onKeyPress={search}/>
-        
+        {weather.main &&(
+            <div className="city">
+                <h2 className="city-name"><span>{weather.name}</span>
+                <sup>{weather.sys.country}</sup>
+                </h2>
+                <div className="city-temp">
+                        {Math.round(weather.main.temp)}
+                        <sup>&deg;C</sup>
+                </div>
+            </div>
+        )}
         </div>
 
     )

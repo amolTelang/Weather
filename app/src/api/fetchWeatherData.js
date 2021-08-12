@@ -9,7 +9,7 @@ export const fetchWeatherData=async(query)=>{
     const {data} =await axios.get(URL,{
         params:{
             q:query,
-            type: 'link, accurate',
+            
             units:'metric',
             
         },
@@ -18,7 +18,8 @@ export const fetchWeatherData=async(query)=>{
             'x-rapidapi-host': 'community-open-weather-map.p.rapidapi.com'
           }
     });
-    return data;
+    const dData=data.list[0];
+    return dData
   } catch (error) {
       console.log(error);
   }
